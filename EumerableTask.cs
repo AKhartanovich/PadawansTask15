@@ -18,8 +18,26 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetUppercaseStrings(IEnumerable<string> data)
         {
+            if (data == null)
+            {
+                throw new ArgumentNullException();
+            }
+            var mass = data.ToArray();
+            for (int i = 0; i < mass.Length; i++)
+            {
+                if (mass[i] != null)
+                {
+                    mass[i] = mass[i].ToUpper();
+                }
+                else
+                {
+                    mass[i] = null;
+                }
+            }
+            return mass;
+
             // TODO : Implement GetUppercaseStrings
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         /// <summary> Transforms an each string from sequence to its length.</summary>
@@ -34,6 +52,21 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<int> GetStringsLength(IEnumerable<string> data)
         {
+            var mass = data.ToArray();
+            int[] result = new int[mass.Length];
+            for(int i = 0; i < mass.Length;i++)
+            {
+                if ( mass[i] != null)
+                {
+                    result[i] = mass[i].Length;
+                }
+                else
+                {
+                    result[i] = 0;
+                }
+
+            }
+            return result;
             // TODO : Implement GetStringsLength
             throw new NotImplementedException();
         }
@@ -50,8 +83,15 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<long> GetSquareSequence(IEnumerable<int> data)
         {
+            var mass = data.ToArray();
+            var abs = new long[mass.Length];
+            for (int i = 0; i < mass.Length; i ++)
+            {
+                abs[i] = Math.Abs(mass[i]) * Math.Abs(mass[i]); 
+            }
+            return abs;
             // TODO : Implement GetSquareSequence
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         /// <summary> Filters a string sequence by a prefix value (case insensitive).</summary>
@@ -71,6 +111,20 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetPrefixItems(IEnumerable<string> data, string prefix)
         {
+            List<string> mass = new List<string>();
+            mass = data.ToList();
+            prefix = prefix.ToLower();
+            for(int i = 0; i <= mass.Count;i++)
+            {
+                if(mass[i].Equals(prefix))
+                {
+                    yield return mass[i];
+                }
+                else
+                {
+                    yield return "";
+                }
+            }
             // TODO : Implement GetPrefixItems
             throw new NotImplementedException();
         }
@@ -89,6 +143,28 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<int> Get3LargestItems(IEnumerable<int> data)
         {
+            var mass = data.ToArray();
+            int[] mass1;
+            if (mass.Length < 3)
+            {
+                mass1 = new int[mass.Length];
+                Array.Sort(mass);
+                Array.Reverse(mass);
+                for (int i = 0; i< mass.Length;i++)
+                {
+                    mass1[i] = mass[i];
+                }
+            }
+            else
+            {
+                mass1 = new int[3];
+                Array.Sort(mass);
+                Array.Reverse(mass);
+                for (int i = 0; i < 3; i++)
+                { mass1[i] = mass[i]; }
+
+            }
+            return mass1;
             // TODO : Implement Get3LargestItems
             throw new NotImplementedException();
         }
@@ -106,6 +182,7 @@ namespace PadawansTask15
         /// </example>
         public int GetSumOfAllIntegers(object[] data)
         {
+            
             // TODO : Implement GetSumOfAllIntegers
             throw new NotImplementedException();
         }
