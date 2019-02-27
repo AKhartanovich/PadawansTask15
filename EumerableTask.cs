@@ -85,9 +85,13 @@ namespace PadawansTask15
         {
             var mass = data.ToArray();
             var abs = new long[mass.Length];
-            for (int i = 0; i < mass.Length; i ++)
+            for (int i = 0; i < mass.Length; i++)
             {
-                abs[i] = Math.Abs(mass[i]) * Math.Abs(mass[i]); 
+                mass[i] = Math.Abs(mass[i]) * Math.Abs(mass[i]);
+            }
+            for (int i = 0; i < mass.Length; i++)
+            {
+                abs[i] = mass[i];
             }
             return abs;
             // TODO : Implement GetSquareSequence
@@ -113,8 +117,8 @@ namespace PadawansTask15
         {
             var str = data.ToArray();
             prefix = prefix.ToLower();
-            string result;
-            if(prefix == "")
+            data = data.Where(a => !String.IsNullOrEmpty(a)).ToArray();
+            if (prefix == "")
             {
                 yield return data.ToString();
             }
@@ -124,7 +128,7 @@ namespace PadawansTask15
             }
             for (int i = 0; i < str.Length; i++)
             {
-                if (str[i].Contains(prefix))
+                if (str[i].StartsWith(prefix))
                 {
                     yield return str[i];
                 }
