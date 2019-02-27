@@ -111,22 +111,27 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetPrefixItems(IEnumerable<string> data, string prefix)
         {
-            List<string> mass = new List<string>();
-            mass = data.ToList();
+            var str = data.ToArray();
             prefix = prefix.ToLower();
-            for(int i = 0; i <= mass.Count;i++)
+            string result;
+            if(prefix == "")
             {
-                if(mass[i].Equals(prefix))
+                yield return data.ToString();
+            }
+            if(prefix == null)
+            {
+                throw new ArgumentNullException();
+            }
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i].Contains(prefix))
                 {
-                    yield return mass[i];
-                }
-                else
-                {
-                    yield return "";
+                    yield return str[i];
                 }
             }
+
             // TODO : Implement GetPrefixItems
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         /// <summary> Finds the 3 largest numbers from a sequence.</summary>
@@ -182,7 +187,8 @@ namespace PadawansTask15
         /// </example>
         public int GetSumOfAllIntegers(object[] data)
         {
-            
+            int sum = 0;
+             return sum = data.OfType<int>().Sum();
             // TODO : Implement GetSumOfAllIntegers
             throw new NotImplementedException();
         }
